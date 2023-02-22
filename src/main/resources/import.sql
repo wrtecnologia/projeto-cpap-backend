@@ -40,3 +40,6 @@ INSERT INTO tb_info_cpap (data, horas_uso, vedacao, eventos_hora, col_ret_masc, 
 INSERT INTO tb_info_cpap (data, horas_uso, vedacao, eventos_hora, col_ret_masc, pontuacao) VALUES ('2023-02-15', '07:24', 0, 1.8, 1, 100);
 INSERT INTO tb_info_cpap (data, horas_uso, vedacao, eventos_hora, col_ret_masc, pontuacao) VALUES ('2023-02-16', '08:22', 0, 2.7, 2, 100);
 INSERT INTO tb_info_cpap (data, horas_uso, vedacao, eventos_hora, col_ret_masc, pontuacao) VALUES ('2023-02-18', '10:10', 0, 1.8, 1, 100);
+INSERT INTO tb_info_cpap (data, horas_uso, vedacao, eventos_hora, col_ret_masc, pontuacao) VALUES ('2023-02-19', '06:46', 0, 1.6, 2, 98);
+INSERT INTO tb_info_cpap (data, horas_uso, vedacao, eventos_hora, col_ret_masc, pontuacao) VALUES ('2023-02-20', '10:03', 0, 2.5, 1, 100);
+INSERT INTO tb_info_cpap (data, horas_uso, vedacao, eventos_hora, col_ret_masc, pontuacao) VALUES ('2023-02-21', '08:22', 0, 1.7, 1, 100);
