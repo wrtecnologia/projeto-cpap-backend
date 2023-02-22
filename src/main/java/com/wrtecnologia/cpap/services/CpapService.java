@@ -1,8 +1,8 @@
 package com.wrtecnologia.cpap.services;
 
-import com.wrtecnologia.cpap.repositories.LogRepository;
-import com.wrtecnologia.cpap.dtos.LogDTO;
-import com.wrtecnologia.cpap.entities.Log;
+import com.wrtecnologia.cpap.repositories.CpapRepository;
+import com.wrtecnologia.cpap.dtos.CpapDTO;
+import com.wrtecnologia.cpap.entities.Cpap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,20 +14,20 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 
 @Service
-public class LogService {
+public class CpapService {
 
     @Autowired
-    private LogRepository repository;
+    private CpapRepository repository;
 
     @Transactional
-    public Page<LogDTO> findByData(String minDate, String maxDate, Pageable pageable) {
+    public Page<CpapDTO> findByData(String minDate, String maxDate, Pageable pageable) {
 
         LocalDate today = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
 
         LocalDate min = minDate.equals("") ? today.minusDays(365) : LocalDate.parse(minDate);
         LocalDate max = maxDate.equals("") ? today : LocalDate.parse(maxDate);
 
-        Page<Log> page = repository.findByData(min, max, pageable);
-        return page.map(LogDTO::new);
+        Page<Cpap> page = repository.findByData(min, max, pageable);
+        return page.map(CpapDTO::new);
     }
 }

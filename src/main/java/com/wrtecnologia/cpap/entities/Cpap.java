@@ -7,7 +7,7 @@ import java.time.LocalTime;
 
 @Entity
 @Table(name = "tb_info_cpap", schema="cpap")
-public class Log implements Serializable {
+public class Cpap implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -20,7 +20,7 @@ public class Log implements Serializable {
     private Integer col_ret_masc;
     private Integer pontuacao;
 
-    public Log() {
+    public Cpap() {
 
     }
 

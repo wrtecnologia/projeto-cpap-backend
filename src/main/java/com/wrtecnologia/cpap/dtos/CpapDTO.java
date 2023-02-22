@@ -1,12 +1,12 @@
 package com.wrtecnologia.cpap.dtos;
 
-import com.wrtecnologia.cpap.entities.Log;
+import com.wrtecnologia.cpap.entities.Cpap;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class LogDTO implements Serializable {
+public class CpapDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
@@ -17,11 +17,11 @@ public class LogDTO implements Serializable {
     private Integer col_ret_masc;
     private Integer pontuacao;
 
-    public LogDTO() {
+    public CpapDTO() {
 
     }
 
-    public LogDTO(Long id, LocalDate data, Double eventos_hora, LocalTime horas_uso, Integer vedacao, Integer col_ret_masc, Integer pontuacao) {
+    public CpapDTO(Long id, LocalDate data, Double eventos_hora, LocalTime horas_uso, Integer vedacao, Integer col_ret_masc, Integer pontuacao) {
         this.id = id;
         this.data = data;
         this.eventos_hora = eventos_hora;
@@ -31,7 +31,7 @@ public class LogDTO implements Serializable {
         this.pontuacao = pontuacao;
     }
 
-    public LogDTO(Log entity) {
+    public CpapDTO(Cpap entity) {
         id = entity.getId();
         data = entity.getData();
         eventos_hora = entity.getEventos_hora();
