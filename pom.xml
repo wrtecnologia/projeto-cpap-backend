@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.wrtecnologia</groupId>
-	<artifactId>log</artifactId>
+	<artifactId>cpap</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>log</name>
 	<description>Log project for investiments</description>
