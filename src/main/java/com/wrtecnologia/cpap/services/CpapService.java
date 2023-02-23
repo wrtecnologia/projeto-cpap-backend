@@ -1,5 +1,6 @@
 package com.wrtecnologia.cpap.services;
 
+import com.wrtecnologia.cpap.dtos.CpapDTOBar;
 import com.wrtecnologia.cpap.repositories.CpapRepository;
 import com.wrtecnologia.cpap.dtos.CpapDTO;
 import com.wrtecnologia.cpap.entities.Cpap;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.List;
 
 @Service
 public class CpapService {
@@ -29,5 +31,11 @@ public class CpapService {
 
         Page<Cpap> page = repository.findByData(min, max, pageable);
         return page.map(CpapDTO::new);
+    }
+
+    @Transactional(readOnly=true)
+    public List<CpapDTOBar> successGroupedBySeller() {
+        return repository.successGroupedBySeller();
+
     }
 }

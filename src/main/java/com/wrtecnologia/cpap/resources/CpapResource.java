@@ -1,6 +1,7 @@
 package com.wrtecnologia.cpap.resources;
 
 import com.wrtecnologia.cpap.dtos.CpapDTO;
+import com.wrtecnologia.cpap.dtos.CpapDTOBar;
 import com.wrtecnologia.cpap.services.CpapService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/logs")
@@ -27,5 +30,11 @@ public class CpapResource {
         Page<CpapDTO> page = service.findByData(minDate, maxDate, pageable);
 
         return ResponseEntity.ok().body(page).getBody();
+    }
+
+    @GetMapping(value = "/success-by-seller")
+    public ResponseEntity<List<CpapDTOBar>> successGroupedBySeller() {
+        List<CpapDTOBar> list = service.successGroupedBySeller();
+        return ResponseEntity.ok(list);
     }
 }
