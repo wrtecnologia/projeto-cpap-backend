@@ -13,40 +13,39 @@ public class CpapDTOBar implements Serializable {
     private LocalDate data;
     private Double eventos_hora;
 
-/*
     private Integer vedacao;
     private LocalTime horas_uso;
     private Integer col_ret_masc;
     private Integer pontuacao;
-*/
+
     public CpapDTOBar() {
 
     }
 
-    public CpapDTOBar(Long id, LocalDate data, Double eventos_hora) { // LocalTime horas_uso, Integer vedacao, Integer col_ret_masc, Integer pontuacao) {
+    public CpapDTOBar(Long id, LocalDate data, Double eventos_hora, Integer vedacao) { // LocalTime horas_uso, Integer vedacao, Integer col_ret_masc, Integer pontuacao) {
         this.id = id;
         this.data = data;
         this.eventos_hora = eventos_hora;
-        /*
-        this.horas_uso = horas_uso;
         this.vedacao = vedacao;
+        this.horas_uso = horas_uso;
         this.col_ret_masc = col_ret_masc;
         this.pontuacao = pontuacao;
+    }
 
-         */
+    public CpapDTOBar(Long id, LocalDate data, Double eventos_hora) {
+        this.id = id;
+        this.data = data;
+        this.eventos_hora = eventos_hora;
     }
 
     public CpapDTOBar(Cpap entity) {
         id = entity.getId();
         data = entity.getData();
         eventos_hora = entity.getEventos_hora();
-       /*
-        horas_uso = entity.getHoras_uso();
         vedacao = entity.getVedacao();
+        horas_uso = entity.getHoras_uso();
         col_ret_masc = entity.getCol_ret_masc();
         pontuacao = entity.getPontuacao();
-
-        */
     }
 
     public Long getId() {
@@ -72,14 +71,6 @@ public class CpapDTOBar implements Serializable {
     public void setEventos_hora(Double eventos_hora) {
         this.eventos_hora = eventos_hora;
     }
-/*
-    public LocalTime getHoras_uso() {
-        return horas_uso;
-    }
-
-    public void setHoras_uso(LocalTime horas_uso) {
-        this.horas_uso = horas_uso;
-    }
 
     public Integer getVedacao() {
         return vedacao;
@@ -87,6 +78,14 @@ public class CpapDTOBar implements Serializable {
 
     public void setVedacao(Integer vedacao) {
         this.vedacao = vedacao;
+    }
+
+    public LocalTime getHoras_uso() {
+        return horas_uso;
+    }
+
+    public void setHoras_uso(LocalTime horas_uso) {
+        this.horas_uso = horas_uso;
     }
 
     public Integer getCol_ret_masc() {
@@ -104,6 +103,5 @@ public class CpapDTOBar implements Serializable {
     public void setPontuacao(Integer pontuacao) {
         this.pontuacao = pontuacao;
     }
-    */
 
 }

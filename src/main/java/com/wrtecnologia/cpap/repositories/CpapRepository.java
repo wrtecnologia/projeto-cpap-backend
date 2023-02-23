@@ -21,14 +21,11 @@ public interface CpapRepository extends JpaRepository<Cpap, Long> {
     Page<Cpap> findByData(LocalDate min, LocalDate max, Pageable pageable);
 
     @Query("SELECT new com.wrtecnologia.cpap.dtos.CpapDTOBar(obj.id, obj.data, obj.eventos_hora) "
-            + " FROM Cpap AS obj ORDER BY obj.data")  //JPQL WHERE obj.id >= 37
+            + " FROM Cpap AS obj ORDER BY obj.data")  //JPQL WHERE obj.id >= 37 // WHERE EXTRACT(MONTH FROM obj.data) = 2
     List<CpapDTOBar> successGroupedBySeller();
+
+    // TODO: CONSULTA A SER CONSTRUIDA (MEDIA DE EVENTOS POR MÊS)
+    // SELECT TO_CHAR(EXTRACT(MONTH FROM data), 'fm00') as mes, ROUND(SUM(eventos_hora) / COUNT(id), 2) AS media_eventos FROM cpap.tb_info_cpap group by EXTRACT(MONTH FROM data)
 
 }
 
-/*
-                    <div className="col-sm-6">
-                        <h5 className="text-center text-secondary">Total por dia (%)</h5>
-                        <DonutChart />
-                    </div>
- */

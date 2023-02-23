@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/logs")
+@RequestMapping(value = "/cpap")
 public class CpapResource {
 
     @Autowired
@@ -32,7 +32,7 @@ public class CpapResource {
         return ResponseEntity.ok().body(page).getBody();
     }
 
-    @GetMapping(value = "/success-by-seller")
+    @GetMapping(value = "/eventos-mes")
     public ResponseEntity<List<CpapDTOBar>> successGroupedBySeller() {
         List<CpapDTOBar> list = service.successGroupedBySeller();
         return ResponseEntity.ok(list);
