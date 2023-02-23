@@ -1,8 +1,9 @@
 package com.wrtecnologia.cpap.services;
 
-import com.wrtecnologia.cpap.dtos.CpapDTOBar;
+import com.wrtecnologia.cpap.dtos.CpapAverageEventsByMonthDTO;
+import com.wrtecnologia.cpap.dtos.CpapEventsDTO;
+import com.wrtecnologia.cpap.dtos.CpapPaginationDTO;
 import com.wrtecnologia.cpap.repositories.CpapRepository;
-import com.wrtecnologia.cpap.dtos.CpapDTO;
 import com.wrtecnologia.cpap.entities.Cpap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,7 +23,7 @@ public class CpapService {
     private CpapRepository repository;
 
     @Transactional
-    public Page<CpapDTO> findByData(String minDate, String maxDate, Pageable pageable) {
+    public Page<CpapPaginationDTO> findByData(String minDate, String maxDate, Pageable pageable) {
 
         LocalDate today = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
 
@@ -30,12 +31,17 @@ public class CpapService {
         LocalDate max = maxDate.equals("") ? today : LocalDate.parse(maxDate);
 
         Page<Cpap> page = repository.findByData(min, max, pageable);
-        return page.map(CpapDTO::new);
+        return page.map(CpapPaginationDTO::new);
     }
 
     @Transactional(readOnly=true)
-    public List<CpapDTOBar> successGroupedBySeller() {
-        return repository.successGroupedBySeller();
-
+    public List<CpapEventsDTO> eventsByMonth() {
+        return repository.eventsByMonth();
     }
+
+    @Transactional(readOnly=true)
+    public List<CpapAverageEventsByMonthDTO> averageEventsByMonth() {
+        return repository.averageEventsByMonth();
+    }
+
 }

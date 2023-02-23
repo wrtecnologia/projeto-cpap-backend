@@ -1,7 +1,7 @@
 package com.wrtecnologia.cpap.repositories;
 
-import com.wrtecnologia.cpap.dtos.CpapDTO;
-import com.wrtecnologia.cpap.dtos.CpapDTOBar;
+import com.wrtecnologia.cpap.dtos.CpapAverageEventsByMonthDTO;
+import com.wrtecnologia.cpap.dtos.CpapEventsDTO;
 import com.wrtecnologia.cpap.entities.Cpap;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,12 +20,15 @@ public interface CpapRepository extends JpaRepository<Cpap, Long> {
     // Page<Log> findByData(@Param("min") LocalDate min, @Param("max") LocalDate max, Pageable pageable);
     Page<Cpap> findByData(LocalDate min, LocalDate max, Pageable pageable);
 
-    @Query("SELECT new com.wrtecnologia.cpap.dtos.CpapDTOBar(obj.id, obj.data, obj.eventos_hora) "
-            + " FROM Cpap AS obj ORDER BY obj.data")  //JPQL WHERE obj.id >= 37 // WHERE EXTRACT(MONTH FROM obj.data) = 2
-    List<CpapDTOBar> successGroupedBySeller();
+    @Query("SELECT new com.wrtecnologia.cpap.dtos.CpapEventsDTO(obj.id, TO_CHAR(obj.data,'DD/MM/YYYY'), obj.eventos_hora) "
+            + " FROM Cpap AS obj ORDER BY obj.data")  //JPQL WHERE obj.id >= 37 // WHERE EXTRACT(MONTH FROM obj.data) = 2 //
+    List<CpapEventsDTO> eventsByMonth();
 
     // TODO: CONSULTA A SER CONSTRUIDA (MEDIA DE EVENTOS POR MÊS)
-    // SELECT TO_CHAR(EXTRACT(MONTH FROM data), 'fm00') as mes, ROUND(SUM(eventos_hora) / COUNT(id), 2) AS media_eventos FROM cpap.tb_info_cpap group by EXTRACT(MONTH FROM data)
 
+    @Query("SELECT new com.wrtecnologia.cpap.dtos.CpapAverageEventsByMonthDTO(TO_CHAR(EXTRACT(MONTH FROM obj.data), 'fm00')," +
+            " ROUND(SUM(obj.eventos_hora) / COUNT(obj.id), 2))"
+            + " FROM Cpap AS obj GROUP BY EXTRACT(MONTH FROM obj.data)")
+    List<CpapAverageEventsByMonthDTO> averageEventsByMonth();
 }
 
