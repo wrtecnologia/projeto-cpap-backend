@@ -26,8 +26,7 @@ public interface CpapRepository extends JpaRepository<Cpap, Long> {
 
     // TODO: CONSULTA A SER CONSTRUIDA (MEDIA DE EVENTOS POR MÊS)
 
-    @Query("SELECT new com.wrtecnologia.cpap.dtos.CpapAverageEventsByMonthDTO(TO_CHAR(EXTRACT(MONTH FROM obj.data), 'fm00')," +
-            " ROUND(SUM(obj.eventos_hora) / COUNT(obj.id), 2))"
+    @Query("SELECT new com.wrtecnologia.cpap.dtos.CpapAverageEventsByMonthDTO(TO_CHAR(EXTRACT(MONTH FROM obj.data), 'fm00'), SUM(obj.eventos_hora) / COUNT(obj.id))"
             + " FROM Cpap AS obj GROUP BY EXTRACT(MONTH FROM obj.data)")
     List<CpapAverageEventsByMonthDTO> averageEventsByMonth();
 }
